@@ -244,7 +244,7 @@ def _iterative_fill_sor(nlat, nlon, var, fillmask, tol=5.0e-4,
             zonavg[j+1] = zonavg[j]
     for j in range(0,nlat-1) :  # southward pass
         jrev = nlat-1-j
-        if zoncnt[jrev] > 0 and zoncnt[jrev-1] == 0 : 
+        if zoncnt[jrev] > 0 and zoncnt[jrev-1] == 0 :
             zoncnt[jrev-1]=1
             zonavg[jrev-1] = zonavg[jrev]
 
@@ -305,5 +305,5 @@ def _iterative_fill_sor(nlat, nlon, var, fillmask, tol=5.0e-4,
 
         res_max = np.max(np.abs(res))
         iter += 1
-        
+
     return (iter,res_max)
