@@ -16,7 +16,8 @@ To work properly, esmlab-regrid requires esmf=8.0.0 and xesmf=0.1.1.
 Usage
 =====
 ### create_filled_ic.py
-  usage: create_filled_ic.py [-h] [-path_out PATH_OUT]
+  ```
+  create_filled_ic.py [-h] [-path_out PATH_OUT]
                              [-file_out_unfilled FILE_OUT_UNFILLED]
                              [-file_out_filled FILE_OUT_FILLED]
                              [-resolution RESOLUTION] [-author AUTHOR]
@@ -35,7 +36,7 @@ Usage
                           Setup which WOA data set to download. Valid entries
                           are: 01 (1 deg) or 04 (0.25 deg)
     -author AUTHOR        Name and email of person creating the dataset
-
+    ```
 ### create_filled_sfc.py
   usage: create_filled_sfc.py [-h] [-path_out PATH_OUT]
                             [-file_out_unfilled FILE_OUT_UNFILLED]
