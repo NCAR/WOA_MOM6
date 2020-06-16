@@ -189,7 +189,7 @@ def driver(args):
 
   ds_fill = xr.Dataset()
 
-  for var in ('t_an', 's_an', 'theta0') :
+  for var in ('s_an', 'theta0') :
       print('Starting ',var,' ...')
 
       ds_fill[var] = fill.lateral_fill(ds_deep[var],mask_all_points,ltripole=False,

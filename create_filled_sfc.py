@@ -17,7 +17,7 @@ def parseCommandLine():
   """
   parser = argparse.ArgumentParser(description=
       '''
-      Creates filled full depth (T,S,PT) for one month (January) using WOA dataset.
+      Creates filled (T, S, pT) for upper 50m for 12 months using WOA dataset.
       WOA dataset is retrived using  NODC THREDSS server
       ''')
   parser.add_argument('-path_out', type=str, default='./',
@@ -57,17 +57,19 @@ def driver(args):
   ncei_thredds_url = 'https://data.nodc.noaa.gov/thredds/dodsC/ncei/woa/'
 
   # Setup which WOA data set to download
-  # 1 deg. WOA
-  fext = '01'
-  res = '1.00'
-
-  # 0.25 deg WOA
-  #fext = '04'
-  #res = '0.25'
+  if args.resolution == '01':
+    # 1 deg. WOA
+    fext = '01'
+    res = '1.00'
+  elif args.resolution == '04':
+    # 0.25 deg WOA
+    fext = '04'
+    res = '0.25'
+  else:
+    raise ValueError('The resolution provided, {}, is not supported. Please use 01 or 04.'.format(args.resolution))
 
   decade = 'decav'
   date_mon = range(1,13)
-
   ###########################################################################
   # Get the data from NODC
 
