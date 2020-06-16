@@ -99,7 +99,10 @@ def driver(args):
   ds_out.attrs['dst_grid_name'] = args.dst_grid_name
   ds_out.attrs['author'] = args.author
   ds_out.attrs['date'] = datetime.now().isoformat()
-  ds_out.attrs['created_using'] = os.path.basename(__file__) + ' which can be found at https://github.com/NCAR/WOA_MOM6'
+  ds_fill.attrs['created_using'] = os.path.basename(__file__) + ' -path_out ' + path_out + ' -author ' + \
+    args.author + ' -infile ' + args.infile + ' -src_grid_name ' + args.src_grid_name + \
+    ' -dst_grid_name ' + args.dst_grid_name
+  ds_out.attrs['url'] = os.path.basename(__file__) + ' can be found at https://github.com/NCAR/WOA_MOM6'
   ds_out.attrs['git_hash'] = str(subprocess.check_output(["git", "describe","--always"]).strip())
   # save
   fname = 'state_restore_{}_{}{}{}.nc'.format(args.dst_grid_name, datetime.now().isoformat()[0:4],datetime.now().isoformat()[5:7],

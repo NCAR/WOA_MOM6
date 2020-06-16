@@ -206,7 +206,10 @@ def driver(args):
   ds_fill.attrs['WOA_resolution'] = args.resolution + ', 01 (1 deg), 04 (0.25 deg)'
   ds_fill.attrs['author'] = args.author
   ds_fill.attrs['date'] = datetime.now().isoformat()
-  ds_fill.attrs['created_using'] = os.path.basename(__file__) + ' which can be found at https://github.com/NCAR/WOA_MOM6'
+  ds_fill.attrs['created_using'] = os.path.basename(__file__) + ' -path_out ' + path_out + ' -author ' + \
+    args.author + ' -resolution ' + args.resolution + ' -file_out_unfilled ' + file_out_unfilled + \
+    ' -file_out_filled ' + file_out_filled
+  ds_fill.attrs['url'] = os.path.basename(__file__) + ' can be found at https://github.com/NCAR/WOA_MOM6'
   ds_fill.attrs['git_hash'] = str(subprocess.check_output(["git", "describe","--always"]).strip())
   # save
   ds_fill.to_netcdf(path_out+file_out_filled)
