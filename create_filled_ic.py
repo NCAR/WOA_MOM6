@@ -207,7 +207,7 @@ def driver(args):
   ds_fill.attrs['author'] = args.author
   ds_fill.attrs['date'] = datetime.now().isoformat()
   ds_fill.attrs['created_using'] = os.path.basename(__file__) + ' which can be found at https://github.com/NCAR/WOA_MOM6'
-  ds_fill.attrs['git_hash'] = subprocess.check_output(["git", "describe","--always"]).strip()
+  ds_fill.attrs['git_hash'] = str(subprocess.check_output(["git", "describe","--always"]).strip())
   # save
   ds_fill.to_netcdf(path_out+file_out_filled)
   return
