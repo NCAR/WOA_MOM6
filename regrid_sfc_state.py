@@ -71,6 +71,13 @@ def driver(args):
     ds_out = xr.open_dataset('/glade/p/cesmdata/cseg/inputdata/ocn/mom/tx0.66v1/salt_restore_tx0.66v1_180828.nc',
              decode_times=False)
     ds_out['theta0'] = xr.Variable(dims=('TIME','LAT','LON'), data = np.zeros(ds_out.salt.shape))
+  elif args.dst_grid_name == 'tx0.1v3':
+    dst_grid_name = 'tx0.1v3_SCRIP_200721'
+    os.system('ln -s  /glade/work/gmarques/Projects/MOM_tx0.1_v3/tx0.1v3_SCRIP_200721.nc '+gridpath)
+    # prototype for the restoring file for the tx0.66v1 grid
+    ds_out = xr.open_dataset('/glade/work/gmarques/Projects/MOM_tx0.1_v3/salt_restore_tx0.1v3_200807.nc',
+             decode_times=False)
+    ds_out['theta0'] = xr.Variable(dims=('TIME','LAT','LON'), data = np.zeros(ds_out.salt.shape))
   else:
     raise ValueError('The destination grid name provided, {}, is not supported. Only tx0.66v1 is supported at this point. '.format(args.dst_grid_name))
 
